@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: centos-6.6
+#    run_list:
+#      - recipe[oracle-xe]
+
+suites:
+  #
+  # database-test
+  #
+  - name: default
+    run_list:
+    - recipe[oracle_database_test]
