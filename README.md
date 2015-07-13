@@ -51,4 +51,4 @@ Manage users and user privileges in a RDBMS.
 
 Examples
 ------------
-Samples of use in: `test\fixtures\cookbooks\oracle_database_test\recipes\default.rb`
+Samples of use in: `test/fixtures/cookbooks/oracle_database_test/recipes/default.rb`
