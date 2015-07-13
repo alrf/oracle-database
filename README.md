@@ -49,4 +49,6 @@ Manage users and user privileges in a RDBMS.
 - :grant: grant user privileges on database objects
 - :revoke: revoke user privileges on database objects
 
+Examples
+------------
 Samples of use in: `test\fixtures\cookbooks\oracle_database_test\recipes\default.rb`
