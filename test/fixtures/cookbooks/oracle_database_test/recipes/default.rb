@@ -1,10 +1,5 @@
 
-connection_info = {
-  host: '//127.0.0.1:1521/XE',
-  username: 'system',
-  password: 'password'
-}
-
+# ======== Install a RDBMS ========
 #
 # Download RPM from here
 #
@@ -21,59 +16,16 @@ ENV['ORACLE_HOME'] = "/u01/app/oracle/product/11.2.0/xe"
 ENV['LD_LIBRARY_PATH'] = "/u01/app/oracle/product/11.2.0/xe/lib"
 
 gem_package 'ruby-oci8'
+# ======== End Install a RDBMS ========
 
 
-=begin
-# loosely coupled prerequisite
-mysql2_chef_gem 'default' do
-  client_version node['mysql']['version'] if node['mysql'] && node['mysql']['version']
-  action :install
-end
 
-# Create a mysql_service to test against
-mysql_service 'default' do
-  version node['mysql']['version'] if node['mysql'] && node['mysql']['version']
-  port '3306'
-  initial_root_password 'ub3rs3kur3'
-  action [:create, :start]
-end
 
-# Create a schema to test mysql_database :drop against
-bash 'create datatrout' do
-  code <<-EOF
-  echo 'CREATE SCHEMA datatrout;' | /usr/bin/mysql -u root -h 127.0.0.1 -P 3306 -pub3rs3kur3;
-  touch /tmp/troutmarker
-  EOF
-  not_if 'test -f /tmp/troutmarker'
-  action :run
-end
-
-# Create a user to test mysql_database_user :drop against
-bash 'create kermit' do
-  code <<-EOF
-  echo "CREATE USER 'kermit'@'localhost';" | /usr/bin/mysql -u root -h 127.0.0.1 -P 3306 -pub3rs3kur3;
-  touch /tmp/kermitmarker
-  EOF
-  not_if 'test -f /tmp/kermitmarker'
-  action :run
-end
-=end
-
-=begin
-## Resources we're testing
-oracle_database 'databass' do
-  connection connection_info
-  action :create
-end
-=end
-
-=begin
-mysql_database 'datatrout' do
-  connection connection_info
-  action :drop
-end
-=end
-
+connection_info = {
+    host: '//127.0.0.1:1521/XE',
+    username: 'system',
+    password: 'password'
+}
 
 # ======== Tables ========
 # Create a table 'table1' :drop against
